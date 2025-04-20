@@ -17,3 +17,6 @@ sed -i 's/export NETWORK_SSH="Y"/export NETWORK_SSH="N"/' /mnt/SDCARD/System/etc
 
 # we modify the DB entries to reflect the current state
 /mnt/SDCARD/System/usr/trimui/scripts/mainui_state_update.sh "SSH" "disabled"
+
+# sleep whenever
+rm /tmp/stay_awake

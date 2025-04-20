@@ -15,7 +15,9 @@ fi
 pkill dropbear
 sed -i 's/export NETWORK_SSH="N"/export NETWORK_SSH="Y"/' /mnt/SDCARD/System/etc/ex_config
 mkdir -p /etc/dropbear
-nice -2 dropbear -R
+
+# -I disconnect if idle for x seconds
+nice -2 dropbear -I 300 -R
 
 # we modify the DB entries to reflect the current state
 /mnt/SDCARD/System/usr/trimui/scripts/mainui_state_update.sh "SSH" "enabled"
@@ -24,3 +26,6 @@ sleep 1
 IP=$(ip route get 1 2>/dev/null | awk '{print $NF;exit}')
 echo "SSH server IP: $IP"
 /mnt/SDCARD/System/usr/trimui/scripts/infoscreen.sh -m "SSH server IP: $IP" -t 4
+
+# do not let the device sleep
+echo 1 > /tmp/stay_awake
