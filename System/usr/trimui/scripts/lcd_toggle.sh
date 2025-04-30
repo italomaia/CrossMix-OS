@@ -2,7 +2,7 @@
 
 # File to store the LCD state
 STATE_FILE=/tmp/lcd_state
-DIR=/mnt/SDCARD/System/usr/trimui/scripts
+DIR=`dirname $0`
 
 # Check if the file exists; if not, create it with the "on" state
 if [ ! -f "$STATE_FILE" ]; then
